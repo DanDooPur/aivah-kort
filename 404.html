@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aivah</title>
+<script>
+  // aivah.doorn.org            -> het redigeervenster
+  // aivah.doorn.org/h19        -> meteen hoofdstuk H19
+  // aivah.doorn.org/?h=H19     -> idem
+  var APP = 'https://script.google.com/a/macros/spinam-intern.nl/s/AKfycbxbgiQLPUHlK9Z5u_a6PnAn-J1TWerOeN19W4jh5cG_RvokTi85F_qoYM7DXvFwiDhHSg/exec';
+  var code = location.pathname.replace(/^\/+|\/+$/g, '').toUpperCase();
+  var zoek = /^[HT]\d{1,2}$/.test(code) ? '?h=' + (/^H\d$/.test(code) ? 'H0' + code[1] : code) : location.search;
+  location.replace(APP + zoek);
+</script>
+<style>body{font-family:system-ui,sans-serif;color:#555;text-align:center;margin-top:30vh}</style>
+</head>
+<body>
+<p>Het redigeervenster wordt geopend…</p>
+<p><a href="https://script.google.com/a/macros/spinam-intern.nl/s/AKfycbxbgiQLPUHlK9Z5u_a6PnAn-J1TWerOeN19W4jh5cG_RvokTi85F_qoYM7DXvFwiDhHSg/exec">Gebeurt er niets? Klik hier.</a></p>
+</body>
+</html>
