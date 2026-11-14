@@ -5,19 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Aivah</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#f2ede3">
+<style>
+  html, body { margin: 0; height: 100%; background: #fbf8f2; overflow: hidden; }
+  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+  #laden { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    font: 16px system-ui, sans-serif; color: #6d675c; }
+</style>
+</head>
+<body>
+<div id="laden">Het redigeervenster wordt geopend…</div>
 <script>
-  // aivah.doorn.org            -> het redigeervenster
+  // aivah.doorn.org            -> het redigeervenster (verder waar je was)
   // aivah.doorn.org/h19        -> meteen hoofdstuk H19
   // aivah.doorn.org/?h=H19     -> idem
+  // De web-app staat in een kader, zodat de adresbalk aivah.doorn.org blijft tonen.
   var APP = 'https://script.google.com/a/macros/spinam-intern.nl/s/AKfycbxbgiQLPUHlK9Z5u_a6PnAn-J1TWerOeN19W4jh5cG_RvokTi85F_qoYM7DXvFwiDhHSg/exec';
   var code = location.pathname.replace(/^\/+|\/+$/g, '').toUpperCase();
   var zoek = /^[HT]\d{1,2}$/.test(code) ? '?h=' + (/^H\d$/.test(code) ? 'H0' + code[1] : code) : location.search;
-  location.replace(APP + zoek);
+  if (zoek !== location.search || code) history.replaceState(null, '', '/' + zoek);    // netjes: aivah.doorn.org/?h=H19
+  var f = document.createElement('iframe');
+  f.src = APP + zoek;
+  f.allow = 'clipboard-read; clipboard-write; autoplay';
+  f.title = 'Aivah redigeren';
+  document.body.appendChild(f);
 </script>
-<style>body{font-family:system-ui,sans-serif;color:#555;text-align:center;margin-top:30vh}</style>
-</head>
-<body>
-<p>Het redigeervenster wordt geopend…</p>
-<p><a href="https://script.google.com/a/macros/spinam-intern.nl/s/AKfycbxbgiQLPUHlK9Z5u_a6PnAn-J1TWerOeN19W4jh5cG_RvokTi85F_qoYM7DXvFwiDhHSg/exec">Gebeurt er niets? Klik hier.</a></p>
+<noscript><a href="https://script.google.com/a/macros/spinam-intern.nl/s/AKfycbxbgiQLPUHlK9Z5u_a6PnAn-J1TWerOeN19W4jh5cG_RvokTi85F_qoYM7DXvFwiDhHSg/exec">Open het redigeervenster</a></noscript>
 </body>
 </html>
